@@ -10,9 +10,10 @@ class APIException(Exception):
 class CryptoConverter:
     @staticmethod
     def get_price(base: str, quote: str, amount: str):
-
         if quote == base:
             raise APIException(f'Введите различные валюты: {base}.')
+        if float(amount) <= 0:
+            raise APIException(f'Неверно введено количество валюты. Это должно быть положительное число')
         try:
             base_ticker = keys[base]
         except KeyError:
@@ -23,7 +24,6 @@ class CryptoConverter:
             raise APIException(f'Не удалось обработать валюту {quote}')
         try:
             amount = float(amount)
-
         except ValueError:
             raise APIException(f'Не удалось обработать количество {amount}')
 
