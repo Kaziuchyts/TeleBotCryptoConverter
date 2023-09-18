@@ -13,8 +13,6 @@ class CryptoConverter:
 
         if quote == base:
             raise APIException(f'Введите различные валюты: {base}.')
-
-        # quote_ticker, base_ticker = keys[quote], keys[base]
         try:
             base_ticker = keys[base]
         except KeyError:
